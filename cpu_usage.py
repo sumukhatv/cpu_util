@@ -24,8 +24,16 @@ def get_cpu_usage():
 	
 	return usage_d
 
+
+def get_proc_cpu_usage(proc):
+        for entry in commands.getoutput("ps aux").split("\n"):
+                if (proc in entry.split()[10]):
+                        return float(entry.split()[2])
+        return 0.0
+
+
 def usage():
-	print "usage: python cpu_uage.py <interval seconds>"
+	print "usage: python cpu_uage.py -i <interval seconds> -p <process name>"
 	return
 
 if __name__ == '__main__':
@@ -34,16 +42,30 @@ if __name__ == '__main__':
 			usage()
 			exit(0)
 
+	if (len(sys.argv) == 3):
 		try:
+			print "CPU"
 			while (True):
 				load = get_cpu_usage()
 				load = round(load, 2)
 				print load				
-				time.sleep(float(sys.argv[1]))
+				time.sleep(float(sys.argv[2]))
 
 		except KeyboardInterrupt:
 			exit(0)
-	
+
+	if (len(sys.argv) == 5):
+                try:
+			print "CPU\tProcess"
+                        while (True):
+                                load = get_cpu_usage()
+                                load = round(load, 2)
+                                load_proc = get_proc_cpu_usage(sys.argv[4])
+                                print str(load)+"\t"+str(load_proc)
+                                time.sleep(float(sys.argv[2]))
+
+                except KeyboardInterrupt:
+                        exit(0)
 	else:
 		usage()
 		
