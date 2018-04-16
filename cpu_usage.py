@@ -33,7 +33,7 @@ def get_proc_cpu_usage(proc):
 
 
 def usage():
-	print "usage: python cpu_uage.py -i <interval seconds> -p <process name>"
+	print "usage: python cpu_usage.py -i <interval seconds> -p <process name>"
 	return
 
 if __name__ == '__main__':

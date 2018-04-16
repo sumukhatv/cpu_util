@@ -10,7 +10,7 @@ def get_cpu_usage(proc):
 	return 0.0
 
 def usage():
-	print "usage: python proc_cpu_uage.py <interval seconds> <process name> <output filename>"
+	print "usage: python proc_cpu_usage.py <interval seconds> <process name> <output filename>"
 	return
 
 if __name__ == '__main__':
